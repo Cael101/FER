@@ -17,9 +17,6 @@ predictions = DeepFace.analyze(img, actions=['emotion'])
 print("Dominant emotion:", predictions[0]['dominant_emotion'])
 type(predictions)
 
-# %%[markdown]
-# วาดรูปสี่เหลี่ยมรอบใบหน้า
-
 
 # %%
 faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -33,3 +30,20 @@ for(x,y,w,h) in faces:
     plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     plt.axis('off')     # ปิดแกนพิกัด
     plt.show() 
+# %%
+font = cv2.FONT_HERSHEY_SIMPLEX
+
+    # Use putText() method for
+    # inserting text on video
+cv2.putText(img,
+            predictions[0]['dominant_emotion'],
+            (0,200),
+            font, 2,
+            (0,0,255),
+            3,
+            cv2.LINE_4);
+# %%
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')     # ปิดแกนพิกัด
+plt.show() 
+# %%
